@@ -10,12 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
 
 public class MeasureMaxActivity extends AppCompatActivity {
-
-
+    double[] gravity = new double[3];
+    double[] linear_acceleration = new double[3];
     TextView textX, textY, textZ, textXmax, textYmax, textZmax, textScore;
     SensorManager sensorManager;
     Sensor sensor;
@@ -46,7 +50,7 @@ public class MeasureMaxActivity extends AppCompatActivity {
         setContentView(R.layout.activity_measure_max);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         textX = (TextView) findViewById(R.id.textX);
         textY = (TextView) findViewById(R.id.textY);
@@ -67,6 +71,17 @@ public class MeasureMaxActivity extends AppCompatActivity {
                 SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    public void onButtonShare(View v) {
+        // Write a message to the database
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("score");
+        String value = score + "";
+        myRef.setValue(value);
+        Toast myToast = Toast.makeText(getApplicationContext(), "score: " + value, Toast.LENGTH_LONG);
+        myToast.show();
+    }
+
     public void onStop() {
         super.onStop();
         sensorManager.unregisterListener(accelListener);
@@ -77,15 +92,35 @@ public class MeasureMaxActivity extends AppCompatActivity {
         public void onAccuracyChanged(Sensor sensor, int acc) { }
 
         public void onSensorChanged(SensorEvent event) {
+            // alpha is calculated as t / (t + dT)
+            // with t, the low-pass filter's time-constant
+            // and dT, the event delivery rate
+
+            final double alpha = 0.8;
+
+            gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
+            gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+            gravity[2] = alpha * gravity[2] + (1 - alpha) * event.values[2];
+
+            linear_acceleration[0] = event.values[0] - gravity[0];
+            linear_acceleration[1] = event.values[1] - gravity[1];
+            linear_acceleration[2] = event.values[2] - gravity[2];
+
+
+
+
             x = event.values[0];
             y = event.values[1];
             z = event.values[2];
 
+           // max_x = (float) linear_acceleration[0];
+          //  max_y = (float) linear_acceleration[1];
+           // max_z = (float) linear_acceleration[2];
 
 
-            textX.setText("X : " + (int)x);
-            textY.setText("Y : " + (int)y);
-            textZ.setText("Z : " + (int)z);
+            textX.setText("X : " + x);
+            textY.setText("Y : " + y);
+            textZ.setText("Z : " + z);
 
             if(max_x < x) max_x = x;
             if(max_y < y) max_y = y;
@@ -96,9 +131,9 @@ public class MeasureMaxActivity extends AppCompatActivity {
             calcScore();
 
             textScore.setText("" +  f.format(score));
-            textXmax.setText("X_max : " + (int)max_x);
-            textYmax.setText("Y_max : " + (int)max_y);
-            textZmax.setText("Z_max : " + (int)max_z);
+            textXmax.setText("lin_x : " + max_x);
+            textYmax.setText("lin_y : " + max_y);
+            textZmax.setText("lin_z : " + max_z);
 
 
         }
@@ -108,7 +143,6 @@ public class MeasureMaxActivity extends AppCompatActivity {
 
 
 
-        score = Math.abs(max_x);
-
+        score = Math.abs(max_x) ;
     }
 }
