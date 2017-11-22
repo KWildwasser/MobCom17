@@ -17,17 +17,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
 
-public class MeasureMaxActivity extends AppCompatActivity {
+public class MeasureMaxWithLast extends AppCompatActivity {
     double[] gravity = new double[3];
     double[] linear_acceleration = new double[3];
     TextView textX, textY, textZ, textXmax, textYmax, textZmax, textScore;
     SensorManager sensorManager;
     Sensor sensor;
+    static float last_x = 0;
     float max_x = 0;
     float max_y = 0;
     float max_z = 0;
     static float x, y, z;
     static float score = 0;
+    static float scoreDiff = 0;
     static double time;
     static int cnt = 0;
     static boolean is_measuring = false;
@@ -39,6 +41,7 @@ public class MeasureMaxActivity extends AppCompatActivity {
         max_z = 0;
         score = 0;
         cnt = 0;
+        scoreDiff = 0;
         is_measuring = true;
         time = SystemClock.currentThreadTimeMillis();
 
@@ -114,7 +117,7 @@ public class MeasureMaxActivity extends AppCompatActivity {
             z = event.values[2];
 
             // max_x = (float) linear_acceleration[0];
-            // max_y = (float) linear_acceleration[1];
+            //  max_y = (float) linear_acceleration[1];
             // max_z = (float) linear_acceleration[2];
 
 
@@ -130,9 +133,9 @@ public class MeasureMaxActivity extends AppCompatActivity {
             calcScore();
 
             textScore.setText("" + f.format(score));
-            textXmax.setText("max_x : " + max_x);
-            textYmax.setText("max_y : " + max_y);
-            textZmax.setText("max_z : " + max_z);
+            textXmax.setText("lin_x : " + max_x);
+            textYmax.setText("lin_y : " + max_y);
+            textZmax.setText("lin_z : " + max_z);
 
 
         }
@@ -141,6 +144,10 @@ public class MeasureMaxActivity extends AppCompatActivity {
     private void calcScore() {
 
 
-        score = Math.abs(max_x);
+        scoreDiff = Math.abs(x - last_x);
+        last_x = x;
+        if (score < scoreDiff) score = scoreDiff;
+
+
     }
 }

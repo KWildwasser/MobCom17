@@ -16,11 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MeasureActivity" />
+        <activity android:name=".MeasureActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".MeasureMaxActivity"></activity>
+        <activity android:name=".MeasureMaxActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MeasureMaxWithLast"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HighscoreActivity"></activity>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import com.google.firebase.database.*;
 public class
 MenuActivity extends AppCompatActivity {
     TextView text_info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,22 +22,32 @@ MenuActivity extends AppCompatActivity {
 
     }
 
-    public  void onButtonStart(View v) {
+    public void onButtonStart(View v) {
         Intent measureActivity = new Intent(this, MeasureActivity.class);
         startActivity(measureActivity);
     }
 
-    public  void onButtonStartMax(View v) {
+    public void onButtonStartMax(View v) {
         Intent intent = new Intent(this, MeasureMaxActivity.class);
         startActivity(intent);
     }
 
-    public  void onButtonSettings(View v) {
+    public void onButtonSettings(View v) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
-    public  void onButtonWriteToFirebase(View v) {
+    public void onButtonLast(View v) {
+        Intent intent = new Intent(this, MeasureMaxWithLast.class);
+        startActivity(intent);
+    }
+
+    public void onButtonHighscore(View v) {
+        Intent intent = new Intent(this, HighscoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void onButtonWriteToFirebase(View v) {
         // Write a message to the database
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

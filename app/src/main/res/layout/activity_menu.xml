@@ -30,6 +30,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/button_last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_row="6"
+            android:elevation="0dp"
+            android:onClick="onButtonLast"
+            android:text="Last"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
+        <Button
             android:id="@+id/button_max_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,6 +101,15 @@
             android:text="Test Firebase"
             tools:layout_editor_absoluteX="538dp"
             tools:layout_editor_absoluteY="557dp" />
+
+        <Button
+            android:id="@+id/button_highscore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="7"
+            android:onClick="onButtonHighscore"
+            android:text="Highscore" />
 
     </GridLayout>
 

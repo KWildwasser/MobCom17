@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.korbinian.multipeactivities.MeasureMaxWithLast">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="475dp"
+        android:layout_margin="24dp"
+        android:orientation="vertical"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textAlignment="center"
+            android:textSize="80sp" />
+
+        <TextView
+            android:id="@+id/textX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="X"
+            android:textAlignment="textStart"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="Y"
+            android:textAlignment="textStart"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z"
+            android:textAlignment="textStart"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textXmax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:text="max_X"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/textYmax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="max_Y"
+            android:textAlignment="textStart" />
+
+        <TextView
+            android:id="@+id/textZmax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp"
+            android:text="max_Z"
+            android:textAlignment="textStart" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonReset"
+            android:text="Reset"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="231dp" />
+
+        <Button
+            android:id="@+id/button_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonShare"
+            android:text="Share!"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="231dp" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

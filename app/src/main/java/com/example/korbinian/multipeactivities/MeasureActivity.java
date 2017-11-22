@@ -40,6 +40,7 @@ public class MeasureActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,8 @@ public class MeasureActivity extends AppCompatActivity {
 
     SensorEventListener accelListener = new SensorEventListener() {
 
-        public void onAccuracyChanged(Sensor sensor, int acc) { }
+        public void onAccuracyChanged(Sensor sensor, int acc) {
+        }
 
         public void onSensorChanged(SensorEvent event) {
             x = event.values[0];
@@ -82,22 +84,20 @@ public class MeasureActivity extends AppCompatActivity {
             z = event.values[2];
 
 
+            textX.setText("X : " + (int) x);
+            textY.setText("Y : " + (int) y);
+            textZ.setText("Z : " + (int) z);
 
-            textX.setText("X : " + (int)x);
-            textY.setText("Y : " + (int)y);
-            textZ.setText("Z : " + (int)z);
-
-            if(max_x < x) max_x = x;
-            if(max_y < y) max_y = y;
-            if(max_z < z) max_z = z;
-
+            if (max_x < x) max_x = x;
+            if (max_y < y) max_y = y;
+            if (max_z < z) max_z = z;
 
 
             calcScore();
 
-            textXmax.setText("X_max : " + (int)max_x);
-            textYmax.setText("Y_max : " + (int)max_y);
-            textZmax.setText("Z_max : " + (int)max_z);
+            textXmax.setText("X_max : " + (int) max_x);
+            textYmax.setText("Y_max : " + (int) max_y);
+            textZmax.setText("Z_max : " + (int) max_z);
 
 
         }
@@ -106,7 +106,7 @@ public class MeasureActivity extends AppCompatActivity {
     private void calcScore() {
 
         boolean measurement_complete = is_measuring;
-        if(time + 100 > SystemClock.currentThreadTimeMillis() ) {
+        if (time + 100 > SystemClock.currentThreadTimeMillis()) {
             cnt++;
             score += Math.abs(x);
             textScore.setText("SHAKE IT!");
@@ -114,9 +114,9 @@ public class MeasureActivity extends AppCompatActivity {
             is_measuring = false;
         }
 
-        if(measurement_complete &! is_measuring) {
+        if (measurement_complete & !is_measuring) {
             score /= cnt;
-            textScore.setText("" +  f.format(score));
+            textScore.setText("" + f.format(score));
         }
 
         // score = Math.abs(max_x)-30;
