@@ -4,6 +4,24 @@
 
     <!-- Strings related to Settings -->
 
+    <!-- StrengthTester General settings -->
+    <string name="pref_app_title">StrengthTester</string>
+    <string name="pref_button_play">Play!</string>
+    <string name="pref_button_settings">Settings</string>
+    <string name="pref_button_highscore">Highscore</string>
+
+    <string name="pref_button_reset">Reset</string>
+    <string name="pref_button_share">SHARE!</string>
+    <string name="pref_button_logoff">Change User</string>
+    <string name="pref_button_debug">Debug</string>
+    <string name="pref_button_test_firebase">Test Firebase</string>
+    <string name="pref_debug_firebase_systemtime">Send Systemtime to Firebase DB: </string>
+
+
+    <string name="pref_play_title">Choose Game Mode</string>
+    <string name="pref_button_max">Normal Mode</string>
+    <string name="pref_button_mean">Wank Mode (offline)</string>
+
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 

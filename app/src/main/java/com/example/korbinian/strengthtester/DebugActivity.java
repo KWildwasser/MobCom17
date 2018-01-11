@@ -1,55 +1,43 @@
-package com.example.korbinian.multipeactivities;
+package com.example.korbinian.strengthtester;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DecimalFormat;
+/**
+ * Created by korbinian on 06.01.18.
+ */
 
-public class MeasureMaxActivity extends AppCompatActivity {
+public class DebugActivity extends AppCompatActivity {
     double[] gravity = new double[3];
     double[] linear_acceleration = new double[3];
-    TextView textX, textY, textZ, textXmax, textYmax, textZmax, textScore;
+    TextView textX, textY, textZ, textXmax, textYmax, textZmax, textScore, textMaxResolution;
     SensorManager sensorManager;
     Sensor sensor;
     float max_x = 0;
     float max_y = 0;
     float max_z = 0;
     static float x, y, z;
-    static float score = 0;
-    static double time;
-    static int cnt = 0;
-    static boolean is_measuring = false;
-    DecimalFormat f = new DecimalFormat("#0.00");
+    Switch switchButton, switchButton2;
+    static public boolean isDebug = false;
 
-    public void onButtonReset(View v) {
-        max_x = 0;
-        max_y = 0;
-        max_z = 0;
-        score = 0;
-        cnt = 0;
-        is_measuring = true;
-        time = SystemClock.currentThreadTimeMillis();
-
-
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_measure_max);
-
+        setContentView(R.layout.activity_debug);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -62,7 +50,7 @@ public class MeasureMaxActivity extends AppCompatActivity {
         textZmax = (TextView) findViewById(R.id.textZmax);
 
         textScore = (TextView) findViewById(R.id.textScore);
-
+        textMaxResolution = (TextView) findViewById(R.id.textMaxResolution);
 
     }
 
@@ -72,22 +60,22 @@ public class MeasureMaxActivity extends AppCompatActivity {
                 SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    public void onButtonShare(View v) {
-        // Write a message to the database
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("score");
-        String value = score + "";
-        myRef.setValue(value);
-        Toast myToast = Toast.makeText(getApplicationContext(), "score: " + value, Toast.LENGTH_LONG);
-        myToast.show();
-    }
-
     public void onStop() {
         super.onStop();
         sensorManager.unregisterListener(accelListener);
     }
 
+    public void onButtonWriteToFirebase(View v) {
+        // Write a message to the database
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("time");
+        String value = String.valueOf(System.currentTimeMillis());
+        myRef.setValue(value);
+        Toast myToast = Toast.makeText(getApplicationContext(), "time: " + value, Toast.LENGTH_LONG);
+        myToast.show();
+
+    }
     SensorEventListener accelListener = new SensorEventListener() {
 
         public void onAccuracyChanged(Sensor sensor, int acc) {
@@ -118,29 +106,35 @@ public class MeasureMaxActivity extends AppCompatActivity {
             // max_z = (float) linear_acceleration[2];
 
 
-            textX.setText("X : " + x);
-            textY.setText("Y : " + y);
-            textZ.setText("Z : " + z);
+
+            //    if(max_x > currentMaxScore) {
+            //        currentMaxScore = max_x;
+            //  } else {
+
 
             if (max_x < x) max_x = x;
             if (max_y < y) max_y = y;
             if (max_z < z) max_z = z;
 
 
-            calcScore();
 
-            textScore.setText("" + f.format(score));
+            textX.setText("X : " + x);
+            textY.setText("Y : " + y);
+            textZ.setText("Z : " + z);
             textXmax.setText("max_x : " + max_x);
             textYmax.setText("max_y : " + max_y);
             textZmax.setText("max_z : " + max_z);
 
+            textMaxResolution.setText("max_range: " + sensor.getMaximumRange());
+
+
+
 
         }
+
+
     };
 
-    private void calcScore() {
 
 
-        score = Math.abs(max_x);
-    }
 }

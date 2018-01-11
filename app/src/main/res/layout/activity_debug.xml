@@ -4,32 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.korbinian.strengthtester.MeasureMaxWithLast">
+    android:layout_margin="24dp"
+    tools:context="com.example.korbinian.strengthtester.SimpleSettingsActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="475dp"
-        android:layout_margin="24dp"
-        android:orientation="vertical"
-        android:weightSum="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textScore"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Score"
+            android:layout_weight="1"
+            android:padding="40dp"
+            android:text="@string/pref_button_debug"
             android:textAlignment="center"
-            android:textSize="80sp" />
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textX"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="X"
+            android:layout_weight="1"
+            android:text=""
             android:textAlignment="textStart"
             android:textSize="30sp" />
 
@@ -38,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:text="Y"
+            android:layout_weight="1"
+            android:text=""
             android:textAlignment="textStart"
             android:textSize="30sp" />
 
@@ -46,7 +49,8 @@
             android:id="@+id/textZ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Z"
+            android:layout_weight="1"
+            android:text=""
             android:textAlignment="textStart"
             android:textSize="30sp" />
 
@@ -54,45 +58,35 @@
             android:id="@+id/textXmax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
-            android:text="max_X"
+            android:layout_weight="1"
+            android:paddingTop="20dp"
+            android:text=""
             android:textAlignment="textStart" />
 
         <TextView
             android:id="@+id/textYmax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="max_Y"
+            android:layout_weight="1"
+            android:text=""
             android:textAlignment="textStart" />
 
         <TextView
             android:id="@+id/textZmax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="40dp"
-            android:text="max_Z"
+            android:layout_weight="1"
+            android:paddingBottom="10dp"
+            android:text=""
             android:textAlignment="textStart" />
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/textMaxResolution"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onButtonReset"
-            android:text="Reset"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="231dp" />
-
-        <Button
-            android:id="@+id/button_share"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onButtonShare"
-            android:text="Share!"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="231dp" />
-
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:text="" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

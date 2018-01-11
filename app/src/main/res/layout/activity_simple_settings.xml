@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="24dp"
+    tools:context="com.example.korbinian.strengthtester.SimpleSettingsActivity">
+
+    <GridLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_weight="1"
+                android:padding="40dp"
+                android:text="StrengthTester v0.1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_logoff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginLeft="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_row="6"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:onClick="onButtonLogOff"
+                android:text="@string/pref_button_logoff"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintTop_creator="1" />
+
+            <Button
+                android:id="@+id/button_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:layout_weight="1"
+                android:onClick="onButtonDebug"
+                android:text="@string/pref_button_debug"
+                tools:layout_editor_absoluteX="538dp"
+                tools:layout_editor_absoluteY="557dp" />
+
+            <Button
+                android:id="@+id/button_testFB2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="onButtonWriteToFirebase"
+                android:text="@string/pref_button_test_firebase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>

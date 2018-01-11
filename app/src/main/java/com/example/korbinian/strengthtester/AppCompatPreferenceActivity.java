@@ -1,4 +1,4 @@
-package com.example.korbinian.multipeactivities;
+package com.example.korbinian.strengthtester;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

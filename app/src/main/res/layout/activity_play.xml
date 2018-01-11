@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="24dp"
-    tools:context="com.example.korbinian.strengthtester.MenuActivity">
+    tools:context="com.example.korbinian.strengthtester.SimpleSettingsActivity">
 
     <GridLayout
         android:layout_width="320dp"
@@ -17,57 +17,51 @@
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="0"
             android:layout_weight="1"
             android:padding="40dp"
-            android:text="@string/pref_app_title"
+            android:text="@string/pref_play_title"
             android:textAlignment="center"
             android:textSize="30sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/button_max_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_row="1"
+            android:elevation="0dp"
+            android:onClick="onButtonStartMax"
+            android:text="@string/pref_button_max"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
 
         <Button
-            android:id="@+id/button_play"
+            android:id="@+id/button_start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="2"
-            android:onClick="onButtonPlay"
-            android:text="@string/pref_button_play"
-
+            android:onClick="onButtonStartMean"
+            android:text="@string/pref_button_mean"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button_max_start"
             app:layout_constraintLeft_toLeftOf="@+id/button_settings"
             app:layout_constraintRight_toLeftOf="@+id/button_settings"
             tools:layout_constraintBaseline_creator="1"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1" />
-
-        <Button
-            android:id="@+id/button_highscore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="7"
-            android:onClick="onButtonHighscore"
-            android:text="@string/pref_button_highscore" />
-
-        <Button
-            android:id="@+id/button_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="3"
-            android:onClick="onButtonSettings"
-            android:text="@string/pref_button_settings"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button_start"
-            app:layout_constraintLeft_toLeftOf="@+id/button_max_start"
-            tools:layout_constraintBaseline_creator="1"
-            tools:layout_constraintLeft_creator="1" />
 
     </GridLayout>
 
